@@ -12,6 +12,15 @@ export default function todoReducer(state = initialState, action) {
         todos: state.todos.concat(action.payload)
       };
     }
+    case TOGGLE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((todo, index) =>
+          index === action.payload.id
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        )
+      };
     default:
       return state;
   }
