@@ -8,7 +8,8 @@ export const TOGGLE_TODO = "TOGGLE_TODO";
 export const createTodo = value => ({
   type: CREATE_TODO,
   payload: {
-    value
+    value,
+    completed: false
   }
 });
 
