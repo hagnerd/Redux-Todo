@@ -1,8 +1,27 @@
-import React from 'react';
+import React from "react";
+
+import TodoList from "./components/todo-list";
+import TodoInput from "./components/todo-input";
 
 function App() {
+  const todos = [
+    {
+      value: "First todo",
+      completed: false
+    },
+    {
+      value: "Second todo",
+      completed: true
+    }
+  ];
+
   return (
-    <h1>Hello World <span role="img" aria-label="hand emoji waving hello">👋</span></h1>
+    <>
+      <TodoInput
+        handleSubmit={value => console.log({ value, completed: false })}
+      />
+      <TodoList todos={todos} />
+    </>
   );
 }
 
