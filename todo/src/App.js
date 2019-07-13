@@ -17,9 +17,7 @@ function App() {
 
   return (
     <>
-      <TodoInput
-        handleSubmit={value => console.log({ value, completed: false })}
-      />
+      <TodoInput handleSubmit={console.log} />
       <TodoList todos={todos} />
     </>
   );
