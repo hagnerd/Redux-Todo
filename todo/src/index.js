@@ -6,8 +6,15 @@ import { Provider } from "react-redux";
 import App from "./App";
 import todoReducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
+import { loadState, saveState } from "./localStorage";
 
-const store = createStore(todoReducer);
+const persistedState = loadState();
+
+const store = createStore(todoReducer, persistedState);
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 ReactDOM.render(
   <Provider store={store}>
