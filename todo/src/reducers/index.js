@@ -1,4 +1,4 @@
-import { CREATE_TODO, TOGGLE_TODO } from "../actions";
+import { CREATE_TODO, TOGGLE_TODO, DELETE_TODO } from "../actions";
 
 const initialState = {
   todos: []
@@ -6,12 +6,11 @@ const initialState = {
 
 export default function todoReducer(state = initialState, action) {
   switch (action.type) {
-    case CREATE_TODO: {
+    case CREATE_TODO:
       return {
         ...state,
         todos: state.todos.concat(action.payload)
       };
-    }
     case TOGGLE_TODO:
       return {
         ...state,
@@ -20,6 +19,11 @@ export default function todoReducer(state = initialState, action) {
             ? { ...todo, completed: !todo.completed }
             : todo
         )
+      };
+    case DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter((_todo, index) => index !== action.payload.id)
       };
     default:
       return state;
