@@ -1,15 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { createTodo } from "../actions";
 
 const initialState = {
   taskDescription: ""
 };
 
-export default class TodoInput extends React.Component {
+class TodoInput extends React.Component {
   state = initialState;
 
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired
+    createTodo: PropTypes.func.isRequired
   };
 
   handleSubmit = event => {
@@ -17,7 +20,7 @@ export default class TodoInput extends React.Component {
 
     const { taskDescription } = this.state;
 
-    this.props.handleSubmit(taskDescription);
+    this.props.createTodo(taskDescription);
     this.setState(initialState);
   };
 
@@ -44,3 +47,12 @@ export default class TodoInput extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  createTodo
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(TodoInput);
