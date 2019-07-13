@@ -1,7 +1,8 @@
 import React from "react";
 import Todo from "./todo";
+import { connect } from "react-redux";
 
-export default function TodoList({ todos }) {
+function TodoList({ todos }) {
   return (
     <ul>
       {todos.map((todo, index) => (
@@ -12,3 +13,7 @@ export default function TodoList({ todos }) {
     </ul>
   );
 }
+
+const mapStateToProps = ({ todos }) => ({ todos });
+
+export default connect(mapStateToProps)(TodoList);
